@@ -4,4 +4,5 @@ local/
 include/
 pip-selfcheck.json
 share/
-
+share/python-wheels/
+lib/python2.7/
