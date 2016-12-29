@@ -1,8 +1,8 @@
-bin/
-lib/
-local/
-include/
+bin/*
+lib/*
+local/*
+include/*
 pip-selfcheck.json
-share/
-share/python-wheels/
-lib/python2.7/
+share/*
+share/python-wheels/*
+lib/python2.7/*
