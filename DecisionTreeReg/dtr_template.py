@@ -54,8 +54,34 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, rand
 sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
-sc_y = StandardScaler()
-y_train = sc_y.fit_transform(y_train)
+#sc_y = StandardScaler()
+#y_train = sc_y.fit_transform(y_train)
+
+# fit models - & DecisionTree 
+from sklearn.tree import DecisionTreeClassifier
+dt_classifier = DecisionTreeClassifier(criterion = 'gini', random_state = 0) 
+dt_classifier.fit(X_train, y_train) # 'gini' is better than 'entropy'
+
+y_pred = dt_classifier.predict(X_test) # predict the test samples
+
+# evaluation of the model - confusion matrix
+from sklearn.metrics import confusion_matrix
+dt_confusionMatrix = confusion_matrix(y_test, y_pred)
+accRate = round(float(float(dt_confusionMatrix[0,0] + dt_confusionMatrix[1,1])/float(len(y_pred)) * 100), 2)
+print ("The accuracy of the prediction is %f percent." %accRate)
+
+
+# fit models - && RandomForest
+from sklearn.ensemble import RandomForestClassifier
+rf_classifier = RandomForestClassifier(n_estimators = 10, criterion = 'gini', random_state = 0)
+rf_classifier.fit(X_train, y_train) # 'gini' is better than 'entropy'
+
+y_pred_rf = rf_classifier.predict(X_test)
+
+# evaluation of the model - confusion matrix
+rf_confusionMatrix = confusion_matrix(y_test, y_pred_rf)
+rf_accRate = round(float(float(rf_confusionMatrix[0,0] + rf_confusionMatrix[1,1])/float(len(y_pred)) * 100), 2)
+print ("The accuracy of the prediction is %f percent." %rf_accRate)
 
 
 
